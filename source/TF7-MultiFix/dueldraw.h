@@ -6,8 +6,8 @@
 #ifndef DUELDRAW_H
 #define DUELDRAW_H
 
-#define PLAYER_LP_VAL_ADDR 0xABE6C
-#define OPPONENT_LP_VAL_ADDR 0xABE70
+#define PLAYER_LP_VAL_ADDR 0xAE64C
+#define OPPONENT_LP_VAL_ADDR 0xAE650
 
 void dueldraw_Patch(uintptr_t base_addr, uintptr_t base_size);
 void dueldraw_SetPlayerLP(uint16_t val);

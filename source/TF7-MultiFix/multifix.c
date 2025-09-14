@@ -133,7 +133,10 @@ int lEhScript_ModuleRead_FinishCB_Hook(uintptr_t unk1, uintptr_t unk2)
             SetGameState(EHSTATE_DECK);
             // base_addr_deck = bs;
             // base_size_deck = sz;
-            // deck_Patch(bs, sz);
+            deck_Patch(bs, sz);
+
+            // TO DO
+            // [FIX] Lower y-pos of lowercase Small Matrix letters in Trunk window?
 
             if (ptr_lEhScript_ModuleRead_FinishCB)
                 return ptr_lEhScript_ModuleRead_FinishCB(unk1, unk2);
@@ -150,7 +153,7 @@ int lEhScript_ModuleRead_FinishCB_Hook(uintptr_t unk1, uintptr_t unk2)
         {
             // base_addr_duelmgr = bs;
             // base_size_duelmgr = sz;
-            // duelmgr_Patch(bs, sz);
+            duelmgr_Patch(bs, sz);
 
             if (ptr_lEhScript_ModuleRead_FinishCB)
                 return ptr_lEhScript_ModuleRead_FinishCB(unk1, unk2);
@@ -291,7 +294,10 @@ int lEhModule_Load_EndCallback_Hook(uintptr_t unk1, uintptr_t unk2)
         {
             // base_addr_dueleng = bs;
             // base_size_dueleng = sz;
-            // dueldraw_Patch(bs, sz);
+            dueldraw_Patch(bs, sz);
+
+            // TO DO
+            // [FIX] Help topic text y-pos in left list (raise a bit)
 
             if (lEhModule_Load_EndCallback)
                 return lEhModule_Load_EndCallback(unk1, unk2);
@@ -309,7 +315,7 @@ int lEhModule_Load_EndCallback_Hook(uintptr_t unk1, uintptr_t unk2)
             SetGameState(EHSTATE_DUEL);
             // base_addr_dueleng = bs;
             // base_size_dueleng = sz;
-            // dueleng_Patch(bs, sz);
+            dueleng_Patch(bs, sz);
 
             if (lEhModule_Load_EndCallback)
                 return lEhModule_Load_EndCallback(unk1, unk2);

@@ -40,35 +40,33 @@ void dueldraw_Patch(uintptr_t base_addr, uintptr_t base_size)
 
     minj_SetBaseAddress(base_addr, base_size);
 
-    dueldraw_sub_262C0 = (int (*)())(0x262C0 + base_addr);
-
-    // fix displayed card when presenting cards from decks (e.g. Pot of Duality shows a random card from the deck)
-    minj_MakeCALL(0x290C4, 0x121AC + base_addr);
+    dueldraw_sub_262C0 = (int (*)())(0x27e5c + base_addr);
 
     // lang fixes (L trigger menu)
+    minj_MakeCALL(0x7AD98, (uintptr_t)&YgSys_GetLang_Hook);
     minj_MakeCALL(0x7ADE4, (uintptr_t)&YgSys_GetLang_Hook);
-    minj_MakeCALL(0x7AE30, (uintptr_t)&YgSys_GetLang_Hook);
-    minj_MakeCALL(0x1C77C, (uintptr_t)&YgSys_GetLang_Hook);
+    minj_MakeCALL(0x1CE2C, (uintptr_t)&YgSys_GetLang_Hook);
 
     // lang fix the help topics
-    minj_MakeCALL(0x21B4, (uintptr_t)&YgSys_GetLang_Hook);
+    minj_MakeCALL(0x2230, (uintptr_t)&YgSys_GetLang_Hook);
 
     // fix help topic text positions
-    minj_WriteMemory16(0x1794, (uint16_t)(9 << 6));
+    minj_WriteMemory16(0x1808, (uint16_t)(9 << 6));
 
     // button text
-    minj_WriteMemory16(0x23E8, (uint16_t)(0xF8 << 6));
-    minj_WriteMemory16(0x240C, (uint16_t)(0xF8 << 6));
-    minj_WriteMemory16(0x2444, (uint16_t)(0xF8 << 6));
-    minj_WriteMemory16(0x246C, (uint16_t)(0xF8 << 6));
+    minj_WriteMemory16(0x2464, (uint16_t)(0xF8 << 6));
+    minj_WriteMemory16(0x2488, (uint16_t)(0xF8 << 6));
+    minj_WriteMemory16(0x24C0, (uint16_t)(0xF8 << 6));
+    minj_WriteMemory16(0x24E8, (uint16_t)(0xF8 << 6));
 
     // current topic title
-    minj_WriteMemory16(0x293C, (uint16_t)(9 << 6));
+    minj_WriteMemory16(0x29BC, (uint16_t)(9 << 6));
+
     // fix starchip infront of the category menu
-    minj_WriteMemory32(0x2B5C, 0x02403021); // move a2, s2
+    minj_WriteMemory32(0x2BDC, 0x02403021); // move a2, s2
 
     // nuke the "help" icon at the bottom right corner
-    minj_MakeCALL(0x1C76C, (uintptr_t)&dueldraw_sub_262C0_Hook);
+    minj_MakeCALL(0x1CE1C, (uintptr_t)&dueldraw_sub_262C0_Hook);
 
 
     minj_SetBaseAddress(oldaddr, oldsize);

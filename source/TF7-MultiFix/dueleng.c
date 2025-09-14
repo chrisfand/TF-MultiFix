@@ -10,7 +10,7 @@
 uintptr_t _base_addr_dueleng = 0;
 uintptr_t _base_size_dueleng = 0;
 
-#define DUELENG_BASE_ENG_ADDR 0x38A980
+#define DUELENG_BASE_ENG_ADDR 0x557378
 
 void (*dueleng_sub_5228)() = (void (*)())(0);
 int (*dueleng_uUpdatePlayerState)() = (int (*)())(0);
@@ -19,7 +19,7 @@ void (*dueleng_uDrawCard)() = (void (*)())(0);
 void dueleng_chtSetOpponentLP(int16_t val)
 {
     if (_base_addr_dueleng)
-        *(int16_t*)(0x38B19C + 0xB3C + _base_addr_dueleng) = val;
+        *(int16_t*)(0x557B94 + 0xD88 + _base_addr_dueleng) = val;
 
     if (dueleng_uUpdatePlayerState)
         dueleng_uUpdatePlayerState();
@@ -28,7 +28,7 @@ void dueleng_chtSetOpponentLP(int16_t val)
 void dueleng_chtSetPlayerLP(int16_t val)
 {
     if (_base_addr_dueleng)
-        *(int16_t*)(0x38B19C + _base_addr_dueleng) = val;
+        *(int16_t*)(0x557B94 + _base_addr_dueleng) = val;
 
     if (dueleng_uUpdatePlayerState)
         dueleng_uUpdatePlayerState();
@@ -44,10 +44,10 @@ void dueleng_chtSetPlayerControl(int PlayerNum, int val)
     if (dueleng_sub_5228)
         dueleng_sub_5228();
 
-    // *(int*)(0x38E3E0 + 8 + _base_addr_dueleng) = val;
-    // *(int*)(0x38E3E8 + 8 + _base_addr_dueleng) = val;
+    // *(int*)(0x38E3E0 + 8 + _base_addr_dueleng) = val; // tf6
+    // *(int*)(0x38E3E8 + 8 + _base_addr_dueleng) = val; // tf6
 
-    *(uint32_t*)(4 * PlayerNum + (0x38E3DC + _base_addr_dueleng) + 8) = val;
+    *(uint32_t*)(4 * PlayerNum + (0x55B284 + _base_addr_dueleng) + 8) = val;
 }
 
 int dueleng_SetPartnerCardVisibility()
@@ -82,7 +82,7 @@ asm
 //     if (_CheatPlayerLP >= 0)
 //         dueleng_chtSetPlayerLP(_CheatPlayerLP);
 // 
-//     void (*UpdatePlayerStatus)(int) = (void(*)(int))(0x1EE124 + _base_addr_dueleng);
+//     void (*UpdatePlayerStatus)(int) = (void(*)(int))(0x1EE124 + _base_addr_dueleng); // tf6
 //     UpdatePlayerStatus(playerNum);
 // }
 
@@ -99,19 +99,19 @@ void dueleng_sub_A28C_Hook(int PlayerNum, int WhoIsInControl)
     if (config->extra.bCheatConstantControlPartner)
     {
         if (PlayerNum == 0)
-            *(uint32_t*)(4 * PlayerNum + (0x38E3DC + _base_addr_dueleng) + 8) = 0;
+            *(uint32_t*)(4 * PlayerNum + (0x55B284 + _base_addr_dueleng) + 8) = 0;
         else
-            *(uint32_t*)(4 * PlayerNum + (0x38E3DC + _base_addr_dueleng) + 8) = WhoIsInControl;
+            *(uint32_t*)(4 * PlayerNum + (0x55B284 + _base_addr_dueleng) + 8) = WhoIsInControl;
     }
     else
-        *(uint32_t*)(4 * PlayerNum + (0x38E3DC + _base_addr_dueleng) + 8) = WhoIsInControl;
+        *(uint32_t*)(4 * PlayerNum + (0x55B284 + _base_addr_dueleng) + 8) = WhoIsInControl;
 }
 
 // void dueleng_chtSetPhase(duelPhase phase)
 // {
-//     *(uint16_t*)(DUELENG_BASE_ENG_ADDR + _base_addr_dueleng) = (phase & 0xFFFF);
-//     *(uint16_t*)(DUELENG_BASE_ENG_ADDR + 8 + _base_addr_dueleng) = (phase & 0xFFFF);
-//     *(uint32_t*)(DUELENG_BASE_ENG_ADDR + 0x808 + _base_addr_dueleng) = 1;
+//     *(uint16_t*)(DUELENG_BASE_ENG_ADDR + _base_addr_dueleng) = (phase & 0xFFFF); // tf6
+//     *(uint16_t*)(DUELENG_BASE_ENG_ADDR + 8 + _base_addr_dueleng) = (phase & 0xFFFF); // tf6
+//     *(uint32_t*)(DUELENG_BASE_ENG_ADDR + 0x808 + _base_addr_dueleng) = 1; // tf6
 // }
 
 void dueleng_chtDrawCard()
@@ -147,41 +147,41 @@ void dueleng_Patch(uintptr_t base_addr, uintptr_t base_size)
 
     minj_SetBaseAddress(base_addr, base_size);
 
-    minj_MakeJMP(0x5770, (uintptr_t)&dueleng_hkSetPartnerCardVisibility);
-    minj_MakeJMP(0x5790, (uintptr_t)&dueleng_hkSetPartnerCardVisibility);
+    minj_MakeJMP(0x3AAC, (uintptr_t)&dueleng_hkSetPartnerCardVisibility);
+    minj_MakeJMP(0x3ACC, (uintptr_t)&dueleng_hkSetPartnerCardVisibility);
 
     //if (mfconfig_GetSeePartnerCards())
     //{
-    //    minj_MakeJMPwNOP(0x5738, (uintptr_t)&dueleng_SetPartnerCardVisibility);
+    //    minj_MakeJMPwNOP(0x5738, (uintptr_t)&dueleng_SetPartnerCardVisibility); // tf6
     //}
 
-    //dueleng_sub_A28C = (void (*)(uintptr_t, int))(0xA28C + base_addr);
-    dueleng_sub_5228 = (void (*)())(0x5228 + base_addr);
-    dueleng_uUpdatePlayerState = (int (*)())(0x1EE320 + base_addr);
-    dueleng_uDrawCard = (void (*)())(0x311BA0 + base_addr);
+    //dueleng_sub_A28C = (void (*)(uintptr_t, int))(0xA28C + base_addr); // tf6
+    dueleng_sub_5228 = (void (*)())(0x3564 + base_addr);
+    dueleng_uUpdatePlayerState = (int (*)())(0x1B9E2C + base_addr);
+    dueleng_uDrawCard = (void (*)())(0x566F8 + base_addr);
 
     //if (mfconfig_GetCheatControlPartner() == 2)
     //{
-        minj_MakeJMPwNOP(0xA28C, (uintptr_t)&dueleng_sub_A28C_Hook);
+        minj_MakeJMPwNOP(0x8984, (uintptr_t)&dueleng_sub_A28C_Hook);
     //}
 
 
-    // minj_MakeCALL(0x698, (uintptr_t)&dueleng_sub_A28C_Hook);
-    // minj_MakeCALL(0x714, (uintptr_t)&dueleng_sub_A28C_Hook);
-    // minj_WriteMemory32(0x3186D0, (uint32_t)&dueleng_sub_A28C_Hook);
+    // minj_MakeCALL(0x698, (uintptr_t)&dueleng_sub_A28C_Hook); // tf6
+    // minj_MakeCALL(0x714, (uintptr_t)&dueleng_sub_A28C_Hook); // tf6
+    // minj_WriteMemory32(0x3186D0, (uint32_t)&dueleng_sub_A28C_Hook); // tf6
 
 
     //if (mfconfig_GetCheatControlPartner() == 2)
     //{
-    //    minj_WriteMemory32(0x718, 0x00002825); // move a1, zero
-    //    //minj_MakeNOP(0xA2B8);
-    //    //minj_MakeNOP(0x1BAAEC);
-    //    //minj_MakeNOP(0x1BAAF0);
+    //    minj_WriteMemory32(0x718, 0x00002825); // move a1, zero // tf6
+    //    //minj_MakeNOP(0xA2B8); // tf6
+    //    //minj_MakeNOP(0x1BAAEC); // tf6
+    //    //minj_MakeNOP(0x1BAAF0); // tf6
     //}
 
     // don't hook if there's nothing to set
     //if ((_CheatOpponentLP >= 0) || (_CheatPlayerLP >= 0))
-    //    minj_MakeCALL(0x1EE374, (uintptr_t)&dueleng_UpdatePlayerStatusHook);
+    //    minj_MakeCALL(0x1EE374, (uintptr_t)&dueleng_UpdatePlayerStatusHook); // tf6
 
     minj_SetBaseAddress(oldaddr, oldsize);
 }
