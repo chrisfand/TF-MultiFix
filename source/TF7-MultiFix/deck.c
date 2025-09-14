@@ -20,47 +20,30 @@ void deck_Patch(uintptr_t base_addr, uintptr_t base_size)
 
     minj_SetBaseAddress(base_addr, base_size);
 
-    minj_MakeJMPwNOP(0x35380, (uintptr_t)&YgSys_GetLang_Hook);
+    minj_MakeJMPwNOP(0x37474, (uintptr_t)&YgSys_GetLang_Hook);
 
-    // injector.MakeCALL(0x6D0, (uintptr_t)&YgSys_GetLang_Hook);
-    // injector.MakeCALL(0x6E0, (uintptr_t)&YgSys_GetLang_Hook);
+    // Set letter shortcut box (L+R card name sorting) color to opaque white for TF7
+    minj_WriteMemory32(0x1CFB0, 0x2417FFFF); //li s7, -0x1
 
     // path dependant
-    minj_MakeCALL(0x1E31C, (uintptr_t)&YgSys_GetLang_Hook2);
-    minj_MakeCALL(0x1E174, (uintptr_t)&YgSys_GetLang_Hook2);
-    minj_MakeCALL(0x5568, (uintptr_t)&YgSys_GetLang_Hook2);
+    minj_MakeCALL(0x1f344, (uintptr_t)&YgSys_GetLang_Hook2);
+    minj_MakeCALL(0x1f19c, (uintptr_t)&YgSys_GetLang_Hook2);
+    minj_MakeCALL(0x5994, (uintptr_t)&YgSys_GetLang_Hook2);
 
     // fix help topic text positions
-    minj_WriteMemory16(0x5144, (uint16_t)(9 << 6));
+    minj_WriteMemory16(0x5570, (uint16_t)(9 << 6));
 
-    // button text
-    minj_WriteMemory16(0x6120, (uint16_t)(0xF8 << 6));
-    minj_WriteMemory16(0x6144, (uint16_t)(0xF8 << 6));
-    minj_WriteMemory16(0x617C, (uint16_t)(0xF8 << 6));
-    minj_WriteMemory16(0x61A4, (uint16_t)(0xF8 << 6));
+    // fix L+R button text
+    minj_WriteMemory16(0x6554, (uint16_t)(0xF8 << 6));
+    minj_WriteMemory16(0x6578, (uint16_t)(0xF8 << 6));
+    minj_WriteMemory16(0x65b0, (uint16_t)(0xF8 << 6));
+    minj_WriteMemory16(0x65d8, (uint16_t)(0xF8 << 6));
 
     // current topic title
-    minj_WriteMemory16(0x6674, (uint16_t)(9 << 6));
-    // fix starchip infront of the category menu
-    minj_WriteMemory32(0x6894, 0x02403021); // move a2, s2
+    minj_WriteMemory16(0x6aac, (uint16_t)(9 << 6));
 
-    //injector.MakeCALL(0x24F4, (uintptr_t)&YgSys_GetLang_Hook2);
-    //injector.MakeCALL(0x2548, (uintptr_t)&YgSys_GetLang_Hook2); // matrix font
-
-    //injector.MakeCALL(0x35AC, (uintptr_t)&YgSys_GetLang_Hook2);
-    //injector.MakeCALL(0x3624, (uintptr_t)&YgSys_GetLang_Hook2);
-    //injector.MakeCALL(0x3624, (uintptr_t)&YgSys_GetLang_Hook2);
-    //injector.MakeCALL(0x3514, (uintptr_t)&YgSys_GetLang_Hook2);
-    //injector.MakeCALL(0x34E0, (uintptr_t)&YgSys_GetLang_Hook2); // matrix font
-
-    // if (!mfconfig_GetMatrixFontInDeckEdit())
-    // {
-    //     // kill matrix font for card names
-    //     minj_MakeJMPwNOP(0x33BA8, (uintptr_t)&ReturnZeroFunc);
-    // }
-
-    // injector.MakeCALL(0x88B0, (uintptr_t)&YgSys_GetLang_Hook);
-
+    // Fixes starchip vertical position in the "?Help" menu's category selection list
+    minj_WriteMemory32(0x6ccc, 0x02403021); // move a2, s2
 
     minj_SetBaseAddress(oldaddr, oldsize);
 }

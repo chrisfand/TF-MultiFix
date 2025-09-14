@@ -114,6 +114,9 @@ int lEhScript_ModuleRead_FinishCB_Hook(uintptr_t unk1, uintptr_t unk2)
         {
             title_Patch(bs, sz);
 
+            // TO DO
+            // [FIX] Swap X and O characters in Deck Edit "?HELP" menu
+
             if (ptr_lEhScript_ModuleRead_FinishCB)
                 return ptr_lEhScript_ModuleRead_FinishCB(unk1, unk2);
             return 0;
