@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="data">
+      <UniqueIdentifier>{5F91957C-4BC8-960D-F4B4-7C10E0CA120F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{ee907bdc-a95a-4dac-bc98-25221fdb234b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\TF7-MultiFix">
+      <UniqueIdentifier>{b85c3f64-e2b7-4caf-825a-1d9dcf12d02e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\TF7-MultiFix\windows">
+      <UniqueIdentifier>{26f3828f-c7f5-4642-9e86-0ad595d2e538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\includes">
+      <UniqueIdentifier>{b001d008-bdce-4b95-86d2-c066fe0e80c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\includes\psp">
+      <UniqueIdentifier>{bdbdeac4-7e03-4eee-8811-4d0b72bc91ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="data\TF7-MultiFix">
+      <UniqueIdentifier>{fafbdeb9-bc8e-4f33-acee-371dd2fe427c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".\source\TF7-MultiFix\makefile">
+      <Filter>source\TF7-MultiFix</Filter>
+    </None>
+    <None Include="data\TF7-MultiFix\plugin.ini">
+      <Filter>data\TF7-MultiFix</Filter>
+    </None>
+    <None Include="PackBuild.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include=".\source\TF7-MultiFix\main.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\multifix.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\dueleng.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\deck.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\shop.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\field.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\helpers.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\duelmgr.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\dueldraw.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\multifixconfig.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\charalist.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\tutoriallist.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\duelrecord.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\umdreplace.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\decktutorial.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\tutorial.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\password.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\selectcard.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\cardalbum.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\soundtest.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\gallery.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\recipeviewer.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\story.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\title.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\YgWindow.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\windows\multifixwindow.c">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\windows\aboutwindow.c">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\windows\cheatmenu_duel.c">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\windows\konamidialog.c">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\DialogWindow.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\MenuWindow.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\windows\cheatmenu_global.c">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\WindowManager.c">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClCompile>
+    <ClCompile Include="source\TF7-MultiFix\windows\cheatmenu_trust.c">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="includes\psp\minjector.c">
+      <Filter>source\includes\psp</Filter>
+    </ClCompile>
+    <ClCompile Include="includes\psp\pspmallochelper.c">
+      <Filter>source\includes\psp</Filter>
+    </ClCompile>
+    <ClCompile Include="includes\psp\stringhash.c">
+      <Filter>source\includes\psp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\TF7-MultiFix\multifix.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\dueleng.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\deck.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\shop.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\field.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\helpers.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\duelmgr.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\dueldraw.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\multifixconfig.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\charalist.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\tutoriallist.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\duelrecord.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\umdreplace.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\decktutorial.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\tutorial.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\password.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\selectcard.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\cardalbum.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\soundtest.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\gallery.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\recipeviewer.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\story.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\title.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\YgWindow.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\windows\multifixwindow.h">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\windows\aboutwindow.h">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\windows\cheatmenu_duel.h">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\windows\konamidialog.h">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\DialogWindow.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\MenuWindow.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\windows\cheatmenu_global.h">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\WindowManager.h">
+      <Filter>source\TF7-MultiFix</Filter>
+    </ClInclude>
+    <ClInclude Include="source\TF7-MultiFix\windows\cheatmenu_trust.h">
+      <Filter>source\TF7-MultiFix\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\psp\minjector.h">
+      <Filter>source\includes\psp</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\psp\pspmallochelper.h">
+      <Filter>source\includes\psp</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\psp\stringhash.h">
+      <Filter>source\includes\psp</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

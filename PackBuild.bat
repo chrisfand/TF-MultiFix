@@ -37,3 +37,30 @@ if exist "build\TF6-MultiFix.prx" (
         cd "..\.."
     )
 )
+
+:: TF7
+if exist "build\TF7-MultiFix.prx" (
+    :: PPSSPP
+    if exist "build\TF7-MultiFix-PPSSPP.zip" del /Q "build\TF7-MultiFix-PPSSPP.zip"
+    if not exist "build\TF7-MultiFix-PPSSPP" mkdir "build\TF7-MultiFix-PPSSPP"
+    if not exist "build\TF7-MultiFix-PPSSPP\TF7-MultiFix" mkdir "build\TF7-MultiFix-PPSSPP\TF7-MultiFix"
+    copy /y "build\TF7-MultiFix.prx" "build\TF7-MultiFix-PPSSPP\TF7-MultiFix\TF7-MultiFix.prx"
+    copy /y "data\TF7-MultiFix\plugin.ini" "build\TF7-MultiFix-PPSSPP\TF7-MultiFix\plugin.ini"
+    copy /y "README.md" "build\TF7-MultiFix-PPSSPP\README.md"
+    :: a bit janky but can't think of anything else atm...
+    cd "build\TF7-MultiFix-PPSSPP"
+    7z a "..\TF7-MultiFix-PPSSPP.zip" "*"
+    cd "..\.."
+    
+    :: PSP - only packs if the bootstrapper exists
+    if exist "build\TF-MultiFixBoot.prx" (
+        if exist "build\TF7-MultiFix-CFW.zip" del /Q "build\TF7-MultiFix-CFW.zip"
+        if not exist "build\TF7-MultiFix-CFW" mkdir "build\TF7-MultiFix-CFW"
+        copy /y "build\TF7-MultiFix.prx" "build\TF7-MultiFix-CFW\TF-MultiFix.prx"
+        copy /y "build\TF-MultiFixBoot.prx" "build\TF7-MultiFix-CFW\TF-MultiFixBoot.prx"
+        copy /y "README.md" "build\TF7-MultiFix-CFW\README.md"
+        cd "build\TF7-MultiFix-CFW"
+        7z a "..\TF7-MultiFix-CFW.zip" "*"
+        cd "..\.."
+    )
+)

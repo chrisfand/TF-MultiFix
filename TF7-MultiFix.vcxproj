@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{60946A1B-C1D5-4ABE-AA1F-B45677BD3C2E}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>MakeFileProj</Keyword>
+    <ProjectName>TF7-MultiFix</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <OutDir>.\build\</OutDir>
+    <IntDir>obj\Win32\Release\TF7-MultiFix\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <OutDir>.\build\</OutDir>
+    <IntDir>obj\Win32\Debug\TF7-MultiFix\</IntDir>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>$(OutDir)TF7-MultiFix.prx</NMakeOutput>
+    <NMakeBuildCommandLine>@echo off
+setlocal EnableDelayedExpansion
+
+:: Set your PPSSPP memstick location here
+:: Otherwise, define PPSSPPMemstick in your environment variables
+if not defined PPSSPPMemstick (set _PPSSPPMemstick=X:\PPSSPP\memstick) else (set _PPSSPPMemstick=!PPSSPPMemstick!)
+
+:: Start the "make" process
+:: You need to launch it via a script that sets the path variables, such as vsmake.ps1 here
+:: We use Powershell to avoid issues with paths with spaces
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)/external/pspsdk/vsmake.ps1" -C "$(SolutionDir)/source/$(ProjectName)/"
+:: Exit on make error
+if !errorlevel! neq 0 exit /b !errorlevel!
+:: If the copy directory doesn't exist, we're done, otherwise, copy the built binary
+if not exist !_PPSSPPMemstick! goto :eof
+if not exist !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName) mkdir !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName)
+copy /y $(NMakeOutput) !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName)
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>@echo off
+setlocal EnableDelayedExpansion
+
+:: Set your PPSSPP memstick location here
+:: Otherwise, define PPSSPPMemstick in your environment variables
+if not defined PPSSPPMemstick (set _PPSSPPMemstick=X:\PPSSPP\memstick) else (set _PPSSPPMemstick=!PPSSPPMemstick!)
+
+:: Start the "make clean" process
+:: You need to launch it via a script that sets the path variables, such as vsmake.ps1 here
+:: We use Powershell to avoid issues with paths with spaces
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)/external/pspsdk/vsmake.ps1" -C "$(SolutionDir)/source/$(ProjectName)/" clean
+:: Exit on make error
+if !errorlevel! neq 0 exit /b !errorlevel!
+
+:: Start the "make" process
+:: You need to launch it via a script that sets the path variables, such as vsmake.ps1 here
+:: We use Powershell to avoid issues with paths with spaces
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)/external/pspsdk/vsmake.ps1" -C "$(SolutionDir)/source/$(ProjectName)/"
+:: Exit on make error
+if !errorlevel! neq 0 exit /b !errorlevel!
+:: If the copy directory doesn't exist, we're done, otherwise, copy the built binary
+if not exist !_PPSSPPMemstick! goto :eof
+if not exist !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName) mkdir !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName)
+copy /y $(NMakeOutput) !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName)
+</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>@echo off
+setlocal EnableDelayedExpansion
+
+:: Start the "make clean" process
+:: You need to launch it via a script that sets the path variables, such as vsmake.ps1 here
+:: We use Powershell to avoid issues with paths with spaces
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)/external/pspsdk/vsmake.ps1" -C "$(SolutionDir)/source/$(ProjectName)/" clean
+:: Exit on make error
+if !errorlevel! neq 0 exit /b !errorlevel!
+</NMakeCleanCommandLine>
+    <NMakeIncludeSearchPath>.\includes;.\external\pspsdk\usr\local\pspdev\bin;.\external\pspsdk\usr\local\pspdev\psp\include;.\external\pspsdk\usr\local\pspdev\psp\sdk\include;.\source</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+    <NMakePreprocessorDefinitions>_PSP_FW_VERSION=150;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>$(OutDir)TF7-MultiFix.prx</NMakeOutput>
+    <NMakeBuildCommandLine>@echo off
+setlocal EnableDelayedExpansion
+
+:: Set your PPSSPP memstick location here
+:: Otherwise, define PPSSPPMemstick in your environment variables
+if not defined PPSSPPMemstick (set _PPSSPPMemstick=X:\PPSSPP\memstick) else (set _PPSSPPMemstick=!PPSSPPMemstick!)
+
+:: Start the "make" process
+:: You need to launch it via a script that sets the path variables, such as vsmake.ps1 here
+:: We use Powershell to avoid issues with paths with spaces
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)/external/pspsdk/vsmake.ps1" -C "$(SolutionDir)/source/$(ProjectName)/"
+:: Exit on make error
+if !errorlevel! neq 0 exit /b !errorlevel!
+:: If the copy directory doesn't exist, we're done, otherwise, copy the built binary
+if not exist !_PPSSPPMemstick! goto :eof
+if not exist !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName) mkdir !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName)
+copy /y $(NMakeOutput) !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName)
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>@echo off
+setlocal EnableDelayedExpansion
+
+:: Set your PPSSPP memstick location here
+:: Otherwise, define PPSSPPMemstick in your environment variables
+if not defined PPSSPPMemstick (set _PPSSPPMemstick=X:\PPSSPP\memstick) else (set _PPSSPPMemstick=!PPSSPPMemstick!)
+
+:: Start the "make clean" process
+:: You need to launch it via a script that sets the path variables, such as vsmake.ps1 here
+:: We use Powershell to avoid issues with paths with spaces
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)/external/pspsdk/vsmake.ps1" -C "$(SolutionDir)/source/$(ProjectName)/" clean
+:: Exit on make error
+if !errorlevel! neq 0 exit /b !errorlevel!
+
+:: Start the "make" process
+:: You need to launch it via a script that sets the path variables, such as vsmake.ps1 here
+:: We use Powershell to avoid issues with paths with spaces
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)/external/pspsdk/vsmake.ps1" -C "$(SolutionDir)/source/$(ProjectName)/"
+:: Exit on make error
+if !errorlevel! neq 0 exit /b !errorlevel!
+:: If the copy directory doesn't exist, we're done, otherwise, copy the built binary
+if not exist !_PPSSPPMemstick! goto :eof
+if not exist !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName) mkdir !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName)
+copy /y $(NMakeOutput) !_PPSSPPMemstick!\PSP\PLUGINS\$(ProjectName)
+</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>@echo off
+setlocal EnableDelayedExpansion
+
+:: Start the "make clean" process
+:: You need to launch it via a script that sets the path variables, such as vsmake.ps1 here
+:: We use Powershell to avoid issues with paths with spaces
+powershell -ExecutionPolicy Bypass -File "$(SolutionDir)/external/pspsdk/vsmake.ps1" -C "$(SolutionDir)/source/$(ProjectName)/" clean
+:: Exit on make error
+if !errorlevel! neq 0 exit /b !errorlevel!
+</NMakeCleanCommandLine>
+    <NMakeIncludeSearchPath>.\includes;.\external\pspsdk\usr\local\pspdev\bin;.\external\pspsdk\usr\local\pspdev\psp\include;.\external\pspsdk\usr\local\pspdev\psp\sdk\include</NMakeIncludeSearchPath>
+    <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+    <NMakePreprocessorDefinitions>_PSP_FW_VERSION=150;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include=".\source\TF7-MultiFix\main.c" />
+    <ClCompile Include="includes\psp\minjector.c" />
+    <ClCompile Include="includes\psp\pspmallochelper.c" />
+    <ClCompile Include="includes\psp\stringhash.c" />
+    <ClCompile Include="source\TF7-MultiFix\cardalbum.c" />
+    <ClCompile Include="source\TF7-MultiFix\charalist.c" />
+    <ClCompile Include="source\TF7-MultiFix\deck.c" />
+    <ClCompile Include="source\TF7-MultiFix\decktutorial.c" />
+    <ClCompile Include="source\TF7-MultiFix\DialogWindow.c" />
+    <ClCompile Include="source\TF7-MultiFix\dueldraw.c" />
+    <ClCompile Include="source\TF7-MultiFix\dueleng.c" />
+    <ClCompile Include="source\TF7-MultiFix\duelmgr.c" />
+    <ClCompile Include="source\TF7-MultiFix\duelrecord.c" />
+    <ClCompile Include="source\TF7-MultiFix\field.c" />
+    <ClCompile Include="source\TF7-MultiFix\gallery.c" />
+    <ClCompile Include="source\TF7-MultiFix\helpers.c" />
+    <ClCompile Include="source\TF7-MultiFix\MenuWindow.c" />
+    <ClCompile Include="source\TF7-MultiFix\multifixconfig.c" />
+    <ClCompile Include="source\TF7-MultiFix\password.c" />
+    <ClCompile Include="source\TF7-MultiFix\recipeviewer.c" />
+    <ClCompile Include="source\TF7-MultiFix\selectcard.c" />
+    <ClCompile Include="source\TF7-MultiFix\shop.c" />
+    <ClCompile Include="source\TF7-MultiFix\multifix.c" />
+    <ClCompile Include="source\TF7-MultiFix\soundtest.c" />
+    <ClCompile Include="source\TF7-MultiFix\story.c" />
+    <ClCompile Include="source\TF7-MultiFix\title.c" />
+    <ClCompile Include="source\TF7-MultiFix\tutorial.c" />
+    <ClCompile Include="source\TF7-MultiFix\tutoriallist.c" />
+    <ClCompile Include="source\TF7-MultiFix\umdreplace.c" />
+    <ClCompile Include="source\TF7-MultiFix\WindowManager.c" />
+    <ClCompile Include="source\TF7-MultiFix\windows\aboutwindow.c" />
+    <ClCompile Include="source\TF7-MultiFix\windows\cheatmenu_duel.c" />
+    <ClCompile Include="source\TF7-MultiFix\windows\cheatmenu_global.c" />
+    <ClCompile Include="source\TF7-MultiFix\windows\cheatmenu_trust.c" />
+    <ClCompile Include="source\TF7-MultiFix\windows\konamidialog.c" />
+    <ClCompile Include="source\TF7-MultiFix\windows\multifixwindow.c" />
+    <ClCompile Include="source\TF7-MultiFix\YgWindow.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".\source\TF7-MultiFix\makefile">
+      <FileType>Makefile</FileType>
+    </None>
+    <None Include="data\TF7-MultiFix\plugin.ini" />
+    <None Include="PackBuild.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\psp\minjector.h" />
+    <ClInclude Include="includes\psp\pspmallochelper.h" />
+    <ClInclude Include="includes\psp\stringhash.h" />
+    <ClInclude Include="source\TF7-MultiFix\cardalbum.h" />
+    <ClInclude Include="source\TF7-MultiFix\charalist.h" />
+    <ClInclude Include="source\TF7-MultiFix\deck.h" />
+    <ClInclude Include="source\TF7-MultiFix\decktutorial.h" />
+    <ClInclude Include="source\TF7-MultiFix\DialogWindow.h" />
+    <ClInclude Include="source\TF7-MultiFix\dueldraw.h" />
+    <ClInclude Include="source\TF7-MultiFix\dueleng.h" />
+    <ClInclude Include="source\TF7-MultiFix\duelmgr.h" />
+    <ClInclude Include="source\TF7-MultiFix\duelrecord.h" />
+    <ClInclude Include="source\TF7-MultiFix\field.h" />
+    <ClInclude Include="source\TF7-MultiFix\gallery.h" />
+    <ClInclude Include="source\TF7-MultiFix\helpers.h" />
+    <ClInclude Include="source\TF7-MultiFix\MenuWindow.h" />
+    <ClInclude Include="source\TF7-MultiFix\multifixconfig.h" />
+    <ClInclude Include="source\TF7-MultiFix\password.h" />
+    <ClInclude Include="source\TF7-MultiFix\recipeviewer.h" />
+    <ClInclude Include="source\TF7-MultiFix\selectcard.h" />
+    <ClInclude Include="source\TF7-MultiFix\shop.h" />
+    <ClInclude Include="source\TF7-MultiFix\multifix.h" />
+    <ClInclude Include="source\TF7-MultiFix\soundtest.h" />
+    <ClInclude Include="source\TF7-MultiFix\story.h" />
+    <ClInclude Include="source\TF7-MultiFix\title.h" />
+    <ClInclude Include="source\TF7-MultiFix\tutorial.h" />
+    <ClInclude Include="source\TF7-MultiFix\tutoriallist.h" />
+    <ClInclude Include="source\TF7-MultiFix\umdreplace.h" />
+    <ClInclude Include="source\TF7-MultiFix\WindowManager.h" />
+    <ClInclude Include="source\TF7-MultiFix\windows\aboutwindow.h" />
+    <ClInclude Include="source\TF7-MultiFix\windows\cheatmenu_duel.h" />
+    <ClInclude Include="source\TF7-MultiFix\windows\cheatmenu_global.h" />
+    <ClInclude Include="source\TF7-MultiFix\windows\cheatmenu_trust.h" />
+    <ClInclude Include="source\TF7-MultiFix\windows\konamidialog.h" />
+    <ClInclude Include="source\TF7-MultiFix\windows\multifixwindow.h" />
+    <ClInclude Include="source\TF7-MultiFix\YgWindow.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

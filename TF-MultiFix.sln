@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TF6-MultiFix", "TF6-MultiFi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TF-MultiFixBoot", "TF-MultiFixBoot.vcxproj", "{97CF17A1-108A-4853-AE3E-047E2055393B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TF7-MultiFix", "TF7-MultiFix.vcxproj", "{60946A1B-C1D5-4ABE-AA1F-B45677BD3C2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,6 +23,10 @@ Global
 		{97CF17A1-108A-4853-AE3E-047E2055393B}.Debug|x86.Build.0 = Debug|Win32
 		{97CF17A1-108A-4853-AE3E-047E2055393B}.Release|x86.ActiveCfg = Release|Win32
 		{97CF17A1-108A-4853-AE3E-047E2055393B}.Release|x86.Build.0 = Release|Win32
+		{60946A1B-C1D5-4ABE-AA1F-B45677BD3C2E}.Debug|x86.ActiveCfg = Debug|Win32
+		{60946A1B-C1D5-4ABE-AA1F-B45677BD3C2E}.Debug|x86.Build.0 = Debug|Win32
+		{60946A1B-C1D5-4ABE-AA1F-B45677BD3C2E}.Release|x86.ActiveCfg = Release|Win32
+		{60946A1B-C1D5-4ABE-AA1F-B45677BD3C2E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
